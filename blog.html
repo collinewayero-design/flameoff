@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog - Flameoff</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <a href="index.html">Home</a> | <a href="workspace.html">Workspace</a>
+</header>
+
+<div class="container">
+  <h2>Blog</h2>
+  <div id="postsContainer"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+const postsContainer = document.getElementById('postsContainer');
+db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+  postsContainer.innerHTML = '';
+  snapshot.forEach(doc => {
+    db.collection('users').doc(doc.data().uid).get().then(u => {
+      const data = u.data();
+      const isMaker = data.isMaker;
+      postsContainer.innerHTML += `
+        <div style="border:1px solid #5050a0; padding:10px; margin:5px 0;">
+          <strong>${data.username} ${isMaker ? '👑 Flameoff Creator' : ''}</strong>
+          <p>${doc.data().content}</p>
+        </div>
+      `;
+    });
+  });
+});
+</script>
+</body>
+</html>
 
