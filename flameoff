@@ -1,11 +1,1 @@
-flameoff/
-├── index.html       ← Home page
-├── signup.html      ← Signup page
-├── login.html       ← Login page
-├── workspace.html   ← Workspace page
-├── blog.html        ← Blog page
-├── movies.html      ← Netflix-only links
-├── learn.html       ← Learning resources
-├── shop.html        ← Marketplace
-├── css/style.css    ← Discord dark theme
-└── js/app.js        ← Firebase JS logic
+
